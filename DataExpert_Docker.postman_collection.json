@@ -1,0 +1,48 @@
+{
+  "info": {
+    "name": "DataExpert API Docker",
+    "description": "Pruebas para la API del modelo de abandono ejecutada en Docker.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Comprobar salud de la API",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        }
+      }
+    },
+    {
+      "name": "Predecir abandono",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"edad\": 35,\n  \"ingreso_mensual\": 3200,\n  \"antiguedad_meses\": 24,\n  \"consultas_soporte\": 3,\n  \"gasto_mensual\": 180,\n  \"tipo_plan\": \"Estandar\",\n  \"region\": \"Costa\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/predict",
+          "host": ["{{base_url}}"],
+          "path": ["predict"]
+        }
+      }
+    }
+  ]
+}
